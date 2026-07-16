@@ -1,13 +1,22 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
-import { NAV_LINKS, SITE_CONFIG } from "@/lib/constants";
+import { SITE_CONFIG } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/shared/container";
+
+const NAV_ITEMS = [
+  { href: "/about", label: "About" },
+  { href: "/services", label: "Services" },
+  { href: "/technology", label: "Technology" },
+  { href: "/clients", label: "Clients" },
+  { href: "/coverage", label: "Coverage" },
+] as const;
 
 export function Header() {
   const pathname = usePathname();
@@ -46,17 +55,23 @@ export function Header() {
     >
       <Container>
         <div className="flex h-16 items-center justify-between sm:h-[4.25rem]">
-          <Link href="/" className="flex items-center gap-2.5 group">
-            <span
+          {/* Logo */}
+          <Link
+            href="/"
+            className="flex items-center gap-2.5 group"
+            aria-label={`${SITE_CONFIG.name} — Beranda`}
+          >
+            <Image
+              src="/logo-mkb.png"
+              alt={`${SITE_CONFIG.shortName} Logo`}
+              width={40}
+              height={40}
+              priority
               className={cn(
-                "flex h-9 w-9 items-center justify-center rounded-lg text-sm font-bold tracking-tight transition-colors",
-                solid
-                  ? "bg-navy text-white"
-                  : "bg-white/15 text-white ring-1 ring-white/20"
+                "h-9 w-9 rounded-lg object-contain transition-shadow sm:h-10 sm:w-10",
+                !solid && "ring-1 ring-white/20 shadow-md"
               )}
-            >
-              MKB
-            </span>
+            />
             <span className="hidden sm:flex flex-col leading-none">
               <span
                 className={cn(
@@ -77,12 +92,13 @@ export function Header() {
             </span>
           </Link>
 
-          <nav className="hidden items-center gap-1 lg:flex">
-            {NAV_LINKS.map((link) => {
-              const active =
-                link.href === "/"
-                  ? pathname === "/"
-                  : pathname.startsWith(link.href);
+          {/* Desktop navigation */}
+          <nav
+            className="hidden items-center gap-1 lg:flex"
+            aria-label="Navigasi utama"
+          >
+            {NAV_ITEMS.map((link) => {
+              const active = pathname.startsWith(link.href);
               return (
                 <Link
                   key={link.href}
@@ -141,12 +157,9 @@ export function Header() {
         )}
       >
         <Container className="py-4">
-          <nav className="flex flex-col gap-1">
-            {NAV_LINKS.map((link) => {
-              const active =
-                link.href === "/"
-                  ? pathname === "/"
-                  : pathname.startsWith(link.href);
+          <nav className="flex flex-col gap-1" aria-label="Navigasi mobile">
+            {NAV_ITEMS.map((link) => {
+              const active = pathname.startsWith(link.href);
               return (
                 <Link
                   key={link.href}

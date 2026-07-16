@@ -1,8 +1,18 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Mail, MapPin, Phone } from "lucide-react";
-import { NAV_LINKS, SERVICES, SITE_CONFIG } from "@/lib/constants";
+import { SERVICES, SITE_CONFIG } from "@/lib/constants";
 import { Container } from "@/components/shared/container";
 import { Separator } from "@/components/ui/separator";
+
+const QUICK_LINKS = [
+  { href: "/about", label: "About" },
+  { href: "/services", label: "Services" },
+  { href: "/technology", label: "Technology" },
+  { href: "/clients", label: "Clients" },
+  { href: "/coverage", label: "Coverage" },
+  { href: "/contact", label: "Contact" },
+] as const;
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -11,17 +21,22 @@ export function Footer() {
     <footer className="bg-navy text-slate-300">
       <Container className="py-14 sm:py-16">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+          {/* Brand */}
           <div className="sm:col-span-2 lg:col-span-1">
             <Link href="/" className="inline-flex items-center gap-2.5">
-              <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-sky text-sm font-bold text-white">
-                MKB
-              </span>
+              <Image
+                src="/logo-mkb.png"
+                alt={`${SITE_CONFIG.shortName} Logo`}
+                width={40}
+                height={40}
+                className="h-9 w-9 rounded-lg object-contain"
+              />
               <span className="flex flex-col leading-none">
                 <span className="text-sm font-bold text-white">
                   {SITE_CONFIG.shortName}
                 </span>
                 <span className="mt-0.5 text-[10px] text-slate-400">
-                  Mitra Kreasi Bersama
+                  {SITE_CONFIG.name}
                 </span>
               </span>
             </Link>
@@ -31,10 +46,11 @@ export function Footer() {
             </p>
           </div>
 
+          {/* Quick links */}
           <div>
-            <h3 className="text-sm font-semibold text-white">Navigasi</h3>
+            <h3 className="text-sm font-semibold text-white">Link Cepat</h3>
             <ul className="mt-4 space-y-2.5">
-              {NAV_LINKS.map((link) => (
+              {QUICK_LINKS.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
@@ -47,6 +63,7 @@ export function Footer() {
             </ul>
           </div>
 
+          {/* Services */}
           <div>
             <h3 className="text-sm font-semibold text-white">Layanan</h3>
             <ul className="mt-4 space-y-2.5">
@@ -63,6 +80,7 @@ export function Footer() {
             </ul>
           </div>
 
+          {/* Contact info */}
           <div>
             <h3 className="text-sm font-semibold text-white">Kontak</h3>
             <ul className="mt-4 space-y-3">
