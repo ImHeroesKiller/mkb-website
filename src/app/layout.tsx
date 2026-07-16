@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -18,6 +18,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_CONFIG.url),
   title: {
     default: `${SITE_CONFIG.name} | Manpower & Brand Activation FMCG`,
     template: `%s | ${SITE_CONFIG.shortName}`,
@@ -36,6 +37,16 @@ export const metadata: Metadata = {
     "field force Indonesia",
   ],
   authors: [{ name: SITE_CONFIG.name }],
+  icons: {
+    icon: [
+      { url: "/favicon.png", type: "image/png", sizes: "32x32" },
+      { url: "/icon-192.png", type: "image/png", sizes: "192x192" },
+      { url: "/icon-512.png", type: "image/png", sizes: "512x512" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
+    shortcut: "/favicon.png",
+  },
+  manifest: "/manifest.json",
   openGraph: {
     type: "website",
     locale: "id_ID",
@@ -43,16 +54,31 @@ export const metadata: Metadata = {
     siteName: SITE_CONFIG.name,
     title: `${SITE_CONFIG.name} | Manpower & Brand Activation FMCG`,
     description: SITE_CONFIG.description,
+    images: [
+      {
+        url: "/logo-mkb.png",
+        width: 512,
+        height: 512,
+        alt: `${SITE_CONFIG.shortName} Logo`,
+      },
+    ],
   },
   twitter: {
-    card: "summary_large_image",
+    card: "summary",
     title: `${SITE_CONFIG.name} | Manpower & Brand Activation FMCG`,
     description: SITE_CONFIG.description,
+    images: ["/logo-mkb.png"],
   },
   robots: {
     index: true,
     follow: true,
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#0EA5E9",
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({
