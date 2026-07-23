@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { MapPin, Users, Building2, Globe2 } from "lucide-react";
-import { COVERAGE_CITIES, SITE_CONFIG } from "@/lib/constants";
+import { OFFICE_LOCATIONS, SITE_CONFIG } from "@/lib/constants";
 import { PageHero } from "@/components/shared/page-hero";
 import { Container } from "@/components/shared/container";
 import { SectionHeading } from "@/components/shared/section-heading";
@@ -46,7 +47,7 @@ export default function CoveragePage() {
           <SectionHeading
             badge="Peta Interaktif"
             title="Lokasi Coverage MKB"
-            description="Klik marker pada peta untuk melihat detail kota dan estimasi kapasitas tim."
+            description="Klik marker untuk melihat alamat representative office dan homebase MKB."
           />
           <div className="mt-10">
             <CoverageMapLoader />
@@ -82,31 +83,46 @@ export default function CoveragePage() {
       <section className="py-16 sm:py-20">
         <Container>
           <SectionHeading
-            badge="Daftar Kota"
-            title="Hub Operasional Utama"
-            description="Estimasi kapasitas tim per kota. Deploy tambahan dapat disesuaikan dengan kebutuhan campaign."
+            badge="Representative & PIC Area"
+            title="Kantor Perwakilan dan Homebase MKB"
+            description="Jaringan kantor dan homebase yang menopang koordinasi tim lapangan di berbagai wilayah Indonesia."
           />
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {COVERAGE_CITIES.map((city) => (
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {OFFICE_LOCATIONS.map((office) => (
               <Card
-                key={city.name}
-                className="border-border/80 transition-colors hover:border-sky/30"
+                key={office.name}
+                className="group overflow-hidden border-border/80 transition-all hover:border-sky/30 hover:shadow-md"
               >
-                <CardContent className="flex items-center gap-4 p-5">
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-sky/10 text-sky">
-                    <MapPin className="h-5 w-5" />
+                {"photo" in office ? (
+                  <div className="relative aspect-[16/9] overflow-hidden bg-slate-100">
+                    <Image
+                      src={office.photo}
+                      alt={`Lokasi MKB ${office.name}`}
+                      fill
+                      sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                    />
                   </div>
-                  <div className="min-w-0 flex-1">
-                    <div className="flex items-center justify-between gap-2">
-                      <p className="font-semibold text-navy">{city.name}</p>
-                      <span className="shrink-0 rounded-full bg-sky/10 px-2 py-0.5 text-xs font-semibold text-sky-dark">
-                        {city.teamSize}
-                      </span>
+                ) : (
+                  <div className="flex aspect-[16/9] items-center justify-center bg-gradient-to-br from-navy to-navy-light">
+                    <MapPin className="h-10 w-10 text-sky-light" />
+                  </div>
+                )}
+                <CardContent className="p-5">
+                  <div className="flex items-start gap-3">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-sky/10 text-sky">
+                      <MapPin className="h-5 w-5" />
                     </div>
-                    <p className="text-sm text-muted-foreground">
-                      {city.region}
-                    </p>
+                    <div>
+                      <p className="font-semibold text-navy">{office.name}</p>
+                      <p className="text-xs font-semibold uppercase tracking-wide text-sky-dark">
+                        {office.type}
+                      </p>
+                    </div>
                   </div>
+                  <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                    {office.address}
+                  </p>
                 </CardContent>
               </Card>
             ))}

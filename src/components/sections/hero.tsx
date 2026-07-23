@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, PlayCircle, ShieldCheck } from "lucide-react";
@@ -95,69 +96,45 @@ export function Hero() {
             initial={{ opacity: 0, scale: 0.96, y: 24 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.65, delay: 0.2 }}
-            className="relative"
+            className="relative mx-auto w-full max-w-lg lg:max-w-none"
           >
-            <div className="glass rounded-3xl p-6 sm:p-8">
-              <div className="mb-6 flex items-center justify-between">
-                <div>
-                  <p className="text-xs font-medium uppercase tracking-wider text-sky-light">
-                    Live Dashboard
-                  </p>
-                  <p className="mt-1 text-lg font-semibold text-white">
-                    JUPITER Overview
-                  </p>
-                </div>
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/15 px-2.5 py-1 text-xs font-medium text-emerald-300">
-                  <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
-                  Online
-                </span>
+            <div className="relative aspect-[4/5] overflow-hidden rounded-3xl border border-white/15 bg-navy-light shadow-2xl shadow-black/30">
+              <Image
+                src="/company/hero/spg-sido-muncul.webp"
+                alt="SPG MKB melayani konsumen pada aktivitas Sido Muncul"
+                fill
+                priority
+                sizes="(min-width: 1024px) 45vw, (min-width: 640px) 70vw, 100vw"
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/5 to-transparent" />
+
+              <div className="absolute left-5 top-5 rounded-full border border-white/20 bg-navy/75 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-white backdrop-blur-md">
+                SPG & Field Execution
               </div>
 
-              <div className="grid grid-cols-2 gap-3">
-                {[
-                  { label: "Active Field Force", value: "1.248", trend: "+12%" },
-                  { label: "Outlet Visited Today", value: "3.902", trend: "+8%" },
-                  { label: "Attendance Rate", value: "97.4%", trend: "+1.2%" },
-                  { label: "Photo Evidence", value: "8.651", trend: "+18%" },
-                ].map((item) => (
-                  <div
-                    key={item.label}
-                    className="rounded-2xl border border-white/10 bg-white/5 p-4"
-                  >
-                    <p className="text-[11px] text-slate-400">{item.label}</p>
-                    <div className="mt-2 flex items-end justify-between gap-2">
-                      <p className="text-xl font-bold text-white">{item.value}</p>
-                      <span className="text-[10px] font-medium text-emerald-400">
-                        {item.trend}
-                      </span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="mt-4 rounded-2xl border border-white/10 bg-white/5 p-4">
-                <div className="mb-3 flex items-center justify-between">
-                  <p className="text-xs text-slate-400">Coverage Performance</p>
-                  <p className="text-xs font-medium text-sky-light">This week</p>
-                </div>
-                <div className="flex h-20 items-end gap-1.5">
-                  {[40, 55, 48, 70, 62, 85, 78, 92, 88, 95, 90, 98].map(
-                    (h, i) => (
-                      <div
-                        key={i}
-                        className="flex-1 rounded-t bg-gradient-to-t from-sky/40 to-sky"
-                        style={{ height: `${h}%` }}
-                      />
-                    )
-                  )}
+              <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-sky-light">
+                  Professional Field Force
+                </p>
+                <p className="mt-2 max-w-sm text-2xl font-bold leading-tight text-white sm:text-3xl">
+                  Interaksi langsung yang menghidupkan brand di setiap outlet.
+                </p>
+                <div className="mt-4 flex flex-wrap gap-2 text-xs font-medium text-slate-200">
+                  <span className="rounded-full border border-white/15 bg-white/10 px-3 py-1.5 backdrop-blur">
+                    SPG Regular
+                  </span>
+                  <span className="rounded-full border border-white/15 bg-white/10 px-3 py-1.5 backdrop-blur">
+                    In-store Activation
+                  </span>
                 </div>
               </div>
             </div>
 
             <div className="absolute -bottom-4 -left-4 hidden rounded-2xl border border-white/10 bg-navy-light/90 px-4 py-3 shadow-xl backdrop-blur sm:block">
-              <p className="text-xs text-slate-400">National Reach</p>
+              <p className="text-xs text-slate-400">Project Highlight</p>
               <p className="text-sm font-semibold text-white">
-                30+ Kota · 5 Pulau Besar
+                Sido Muncul · Regular SPG
               </p>
             </div>
           </motion.div>

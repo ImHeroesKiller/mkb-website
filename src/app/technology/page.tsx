@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import {
   Camera,
@@ -102,54 +103,104 @@ export default function TechnologyPage() {
               </Button>
             </div>
 
-            {/* Mock dashboard */}
-            <div className="rounded-3xl border border-border bg-navy p-6 shadow-xl sm:p-8">
-              <div className="mb-5 flex items-center justify-between">
-                <div>
-                  <p className="text-xs font-medium uppercase tracking-wider text-sky-light">
-                    JUPITER
-                  </p>
-                  <p className="text-lg font-semibold text-white">
-                    Command Center
-                  </p>
-                </div>
-                <span className="rounded-full bg-emerald-500/15 px-2.5 py-1 text-xs font-medium text-emerald-300">
-                  Live
-                </span>
-              </div>
-              <div className="space-y-3">
-                {[
-                  { label: "Check-in hari ini", value: "1.186 / 1.220", pct: 97 },
-                  { label: "Outlet covered", value: "3.902", pct: 82 },
-                  { label: "Photo evidence uploaded", value: "8.651", pct: 91 },
-                  { label: "SLA report on-time", value: "98.2%", pct: 98 },
-                ].map((row) => (
-                  <div
-                    key={row.label}
-                    className="rounded-xl border border-white/10 bg-white/5 p-4"
-                  >
-                    <div className="flex items-center justify-between text-sm">
-                      <span className="text-slate-400">{row.label}</span>
-                      <span className="font-semibold text-white">
-                        {row.value}
-                      </span>
+            <div className="relative overflow-hidden rounded-3xl border border-border bg-navy shadow-xl">
+              <div className="relative aspect-[16/9]">
+                <Image
+                  src="/company/jupiter/platform-showcase.webp"
+                  alt="JUPITER login dan live monitoring dashboard"
+                  fill
+                  priority
+                  sizes="(min-width: 1024px) 50vw, 100vw"
+                  className="object-cover"
+                />
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-navy via-navy/70 to-transparent p-6 pt-20">
+                  <div className="flex items-end justify-between gap-4">
+                    <div>
+                      <p className="text-xs font-semibold uppercase tracking-wider text-sky-light">
+                        Actual Platform View
+                      </p>
+                      <p className="mt-1 text-lg font-semibold text-white">
+                        Login & Live Monitoring
+                      </p>
                     </div>
-                    <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-white/10">
-                      <div
-                        className="h-full rounded-full bg-sky"
-                        style={{ width: `${row.pct}%` }}
-                      />
-                    </div>
+                    <span className="rounded-full bg-emerald-500/15 px-3 py-1 text-xs font-medium text-emerald-300 ring-1 ring-inset ring-emerald-400/20">
+                      Field Visibility
+                    </span>
                   </div>
-                ))}
+                </div>
               </div>
             </div>
           </div>
         </Container>
       </section>
 
+      <section className="border-y border-border bg-slate-50 py-16 sm:py-20">
+        <Container>
+          <SectionHeading
+            badge="Platform Evidence"
+            title="Dari Monitoring Lokasi hingga Report Evidence"
+            description="Tampilan aktual JUPITER memperlihatkan tiga lapisan utama: akses platform, pemantauan area, dan output dokumentasi aktivitas."
+          />
+          <div className="mt-12 space-y-8">
+            {[
+              {
+                image: "/company/jupiter/login-dashboard.webp",
+                label: "Secure Access",
+                title: "Portal Monitoring Terpusat",
+                description:
+                  "Akses dashboard terpusat menjadi pintu masuk bagi tim operasional dan stakeholder yang diberi kewenangan.",
+              },
+              {
+                image: "/company/jupiter/live-map.webp",
+                label: "Geographic Monitoring",
+                title: "Live Map dan Filter Periode",
+                description:
+                  "Peta monitoring membantu membaca persebaran aktivitas, memilih rentang waktu, dan menelusuri area operasional.",
+              },
+              {
+                image: "/company/jupiter/manpower-report-anonymized.webp",
+                label: "Evidence Reporting",
+                title: "Manpower Summary Activity",
+                description:
+                  "Output laporan menggabungkan personel, area, outlet, waktu kunjungan, kategori display, dan dokumentasi foto. Detail sensitif disamarkan pada versi publik.",
+              },
+            ].map((item, index) => (
+              <article
+                key={item.title}
+                className="grid items-center gap-7 overflow-hidden rounded-3xl border border-border bg-white p-5 shadow-sm md:grid-cols-[1.2fr_0.8fr] md:p-7"
+              >
+                <div
+                  className={`relative aspect-[16/9] overflow-hidden rounded-2xl bg-slate-100 ${
+                    index % 2 === 1 ? "md:order-2" : ""
+                  }`}
+                >
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    fill
+                    sizes="(min-width: 768px) 60vw, 100vw"
+                    className="object-cover"
+                  />
+                </div>
+                <div className={index % 2 === 1 ? "md:order-1" : ""}>
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-sky-dark">
+                    {item.label}
+                  </p>
+                  <h3 className="mt-2 text-2xl font-bold text-navy">
+                    {item.title}
+                  </h3>
+                  <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                    {item.description}
+                  </p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </Container>
+      </section>
+
       {/* Features grid */}
-      <section className="bg-slate-50 py-16 sm:py-20">
+      <section className="py-16 sm:py-20">
         <Container>
           <SectionHeading
             badge="Fitur Utama"

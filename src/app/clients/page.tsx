@@ -1,11 +1,15 @@
 import type { Metadata } from "next";
-import { Building2, Quote, Star } from "lucide-react";
-import { CLIENTS, SITE_CONFIG } from "@/lib/constants";
+import Image from "next/image";
+import Link from "next/link";
+import { Quote, Star } from "lucide-react";
+import { CLIENTS, PROJECTS, SITE_CONFIG } from "@/lib/constants";
 import { PageHero } from "@/components/shared/page-hero";
 import { Container } from "@/components/shared/container";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { Card, CardContent } from "@/components/ui/card";
 import { CTA } from "@/components/sections/cta";
+import { Button } from "@/components/ui/button";
+import { ProjectCard } from "@/components/portfolio/project-card";
 
 export const metadata: Metadata = {
   title: "Klien",
@@ -61,25 +65,52 @@ export default function ClientsPage() {
             title="Beberapa Brand yang Kami Layani"
             description="Nama-nama di bawah merepresentasikan kepercayaan jangka panjang terhadap kualitas people & process MKB."
           />
-          <div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+          <div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
             {CLIENTS.map((client) => (
               <Card
                 key={client.name}
-                className="group border-border/80 transition-all hover:border-sky/30 hover:shadow-md"
+                className="group relative overflow-hidden border-border/80 transition-all hover:border-sky/30 hover:shadow-md"
               >
-                <CardContent className="flex flex-col items-center justify-center p-8 text-center">
-                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-slate-100 text-navy transition-colors group-hover:bg-sky/10 group-hover:text-sky">
-                    <Building2 className="h-6 w-6" />
-                  </div>
-                  <p className="mt-4 text-lg font-bold tracking-tight text-navy">
-                    {client.name}
-                  </p>
-                  <p className="mt-1 text-xs text-muted-foreground">
-                    {client.category}
-                  </p>
+                {"ongoing" in client && client.ongoing && (
+                  <span className="absolute right-2 top-2 z-10 rounded-full bg-emerald-50 px-2 py-1 text-[10px] font-bold uppercase tracking-wide text-emerald-700 ring-1 ring-inset ring-emerald-200">
+                    Ongoing
+                  </span>
+                )}
+                <CardContent className="flex min-h-32 items-center justify-center p-4 sm:p-5">
+                  <Image
+                    src={client.logo}
+                    alt={`Logo ${client.name}`}
+                    width={240}
+                    height={90}
+                    className="h-auto max-h-20 w-full object-contain mix-blend-multiply transition-transform duration-300 group-hover:scale-105"
+                  />
                 </CardContent>
               </Card>
             ))}
+          </div>
+        </Container>
+      </section>
+
+      <section className="bg-slate-50 py-16 sm:py-20">
+        <Container>
+          <SectionHeading
+            badge="Client Project"
+            title="Dari Logo Menjadi Eksekusi Nyata"
+            description="Lihat bagaimana kolaborasi dengan brand diwujudkan melalui tim lapangan, merchandising, sales motorist, dan brand activation."
+          />
+          <div className="mt-10 grid gap-5 md:grid-cols-3">
+            {PROJECTS.filter(
+              (project) => "featured" in project && project.featured,
+            )
+              .slice(1, 4)
+              .map((project) => (
+                <ProjectCard key={project.slug} project={project} />
+              ))}
+          </div>
+          <div className="mt-10 text-center">
+            <Button asChild variant="accent">
+              <Link href="/portfolio">Lihat Portfolio Project</Link>
+            </Button>
           </div>
         </Container>
       </section>

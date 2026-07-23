@@ -9,12 +9,14 @@ import {
   Users,
   type LucideIcon,
 } from "lucide-react";
-import { SERVICES, SITE_CONFIG } from "@/lib/constants";
+import { PROJECTS, SERVICES, SITE_CONFIG } from "@/lib/constants";
 import { PageHero } from "@/components/shared/page-hero";
 import { Container } from "@/components/shared/container";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { CTA } from "@/components/sections/cta";
+import { SectionHeading } from "@/components/shared/section-heading";
+import { ProjectCard } from "@/components/portfolio/project-card";
 
 export const metadata: Metadata = {
   title: "Layanan",
@@ -114,6 +116,30 @@ export default function ServicesPage() {
                 </article>
               );
             })}
+          </div>
+        </Container>
+      </section>
+
+      <section className="border-y border-border bg-slate-50 py-16 sm:py-20">
+        <Container>
+          <SectionHeading
+            badge="Bukti Pelaksanaan"
+            title="Layanan dalam Proyek Nyata"
+            description="Beberapa dokumentasi yang menunjukkan bagaimana modul layanan MKB dijalankan di modern trade, general trade, event, dan sekolah."
+          />
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {PROJECTS.filter(
+              (project) => "featured" in project && project.featured,
+            )
+              .slice(0, 6)
+              .map((project) => (
+                <ProjectCard key={project.slug} project={project} />
+              ))}
+          </div>
+          <div className="mt-10 text-center">
+            <Button asChild variant="outline">
+              <Link href="/portfolio">Jelajahi Seluruh Portfolio</Link>
+            </Button>
           </div>
         </Container>
       </section>
