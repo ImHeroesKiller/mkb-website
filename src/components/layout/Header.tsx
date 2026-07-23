@@ -13,6 +13,7 @@ import { Container } from "@/components/shared/container";
 const NAV_ITEMS = [
   { href: "/about", label: "About" },
   { href: "/services", label: "Services" },
+  { href: "/portfolio", label: "Portfolio" },
   { href: "/technology", label: "Technology" },
   { href: "/clients", label: "Clients" },
   { href: "/coverage", label: "Coverage" },

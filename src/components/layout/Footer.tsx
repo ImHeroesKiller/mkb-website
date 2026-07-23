@@ -8,6 +8,7 @@ import { Separator } from "@/components/ui/separator";
 const QUICK_LINKS = [
   { href: "/about", label: "About" },
   { href: "/services", label: "Services" },
+  { href: "/portfolio", label: "Portfolio" },
   { href: "/technology", label: "Technology" },
   { href: "/clients", label: "Clients" },
   { href: "/coverage", label: "Coverage" },

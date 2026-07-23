@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { Quote, Star } from "lucide-react";
-import { CLIENTS, SITE_CONFIG } from "@/lib/constants";
+import { CLIENTS, PROJECTS, SITE_CONFIG } from "@/lib/constants";
 import { PageHero } from "@/components/shared/page-hero";
 import { Container } from "@/components/shared/container";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { Card, CardContent } from "@/components/ui/card";
 import { CTA } from "@/components/sections/cta";
+import { Button } from "@/components/ui/button";
+import { ProjectCard } from "@/components/portfolio/project-card";
 
 export const metadata: Metadata = {
   title: "Klien",
@@ -84,6 +87,30 @@ export default function ClientsPage() {
                 </CardContent>
               </Card>
             ))}
+          </div>
+        </Container>
+      </section>
+
+      <section className="bg-slate-50 py-16 sm:py-20">
+        <Container>
+          <SectionHeading
+            badge="Client Project"
+            title="Dari Logo Menjadi Eksekusi Nyata"
+            description="Lihat bagaimana kolaborasi dengan brand diwujudkan melalui tim lapangan, merchandising, sales motorist, dan brand activation."
+          />
+          <div className="mt-10 grid gap-5 md:grid-cols-3">
+            {PROJECTS.filter(
+              (project) => "featured" in project && project.featured,
+            )
+              .slice(1, 4)
+              .map((project) => (
+                <ProjectCard key={project.slug} project={project} />
+              ))}
+          </div>
+          <div className="mt-10 text-center">
+            <Button asChild variant="accent">
+              <Link href="/portfolio">Lihat Portfolio Project</Link>
+            </Button>
           </div>
         </Container>
       </section>
