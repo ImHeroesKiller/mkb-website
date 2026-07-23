@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -65,23 +66,46 @@ export function JupiterHighlight() {
             </div>
           </AnimatedSection>
 
-          <StaggerContainer className="grid gap-4 sm:grid-cols-2">
-            {highlights.map((item) => (
-              <StaggerItem key={item.title}>
-                <div className="h-full rounded-2xl border border-white/10 bg-white/5 p-5 transition-colors hover:bg-white/10">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-sky/20 text-sky-light">
-                    <item.icon className="h-5 w-5" />
-                  </div>
-                  <h3 className="mt-4 text-base font-semibold text-white">
-                    {item.title}
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-slate-400">
-                    {item.description}
+          <div>
+            <AnimatedSection delay={0.1}>
+              <div className="relative aspect-[16/9] overflow-hidden rounded-3xl border border-white/10 bg-white/5 shadow-2xl">
+                <Image
+                  src="/company/jupiter/platform-showcase.webp"
+                  alt="Tampilan JUPITER login dan live map monitoring"
+                  fill
+                  sizes="(min-width: 1024px) 50vw, 100vw"
+                  className="object-cover"
+                />
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-navy/90 to-transparent p-5 pt-16">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-sky-light">
+                    Actual Platform Evidence
+                  </p>
+                  <p className="mt-1 text-sm font-medium text-white">
+                    Centralized login · Live map · Activity reporting
                   </p>
                 </div>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
+              </div>
+            </AnimatedSection>
+            <StaggerContainer className="mt-4 grid gap-3 sm:grid-cols-2">
+              {highlights.map((item) => (
+                <StaggerItem key={item.title}>
+                  <div className="flex h-full items-start gap-3 rounded-xl border border-white/10 bg-white/5 p-4 transition-colors hover:bg-white/10">
+                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-sky/20 text-sky-light">
+                      <item.icon className="h-4 w-4" />
+                    </div>
+                    <div>
+                      <h3 className="text-sm font-semibold text-white">
+                        {item.title}
+                      </h3>
+                      <p className="mt-1 text-xs leading-relaxed text-slate-400">
+                        {item.description}
+                      </p>
+                    </div>
+                  </div>
+                </StaggerItem>
+              ))}
+            </StaggerContainer>
+          </div>
         </div>
       </Container>
     </section>
