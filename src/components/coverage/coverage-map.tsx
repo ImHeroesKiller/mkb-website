@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { COVERAGE_CITIES } from "@/lib/constants";
+import { OFFICE_LOCATIONS } from "@/lib/constants";
 
 interface MapComponents {
   MapContainer: typeof import("react-leaflet").MapContainer;
@@ -92,18 +92,18 @@ export function CoverageMap() {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        {COVERAGE_CITIES.map((city) => (
+        {OFFICE_LOCATIONS.map((office) => (
           <Marker
-            key={city.name}
-            position={[city.lat, city.lng]}
+            key={office.name}
+            position={[office.lat, office.lng]}
             icon={createIcon()}
           >
             <Popup>
-              <div className="min-w-[140px] p-1">
-                <p className="text-sm font-bold text-slate-900">{city.name}</p>
-                <p className="text-xs text-slate-500">{city.region}</p>
-                <p className="mt-1 text-xs font-semibold text-sky-600">
-                  Tim: {city.teamSize}
+              <div className="min-w-[190px] p-1">
+                <p className="text-sm font-bold text-slate-900">{office.name}</p>
+                <p className="text-xs font-semibold text-sky-600">{office.type}</p>
+                <p className="mt-1 text-xs leading-relaxed text-slate-500">
+                  {office.address}
                 </p>
               </div>
             </Popup>

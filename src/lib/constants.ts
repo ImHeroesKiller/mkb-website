@@ -97,14 +97,112 @@ export const SERVICES = [
 ] as const;
 
 export const CLIENTS = [
-  { name: "Paseo", category: "Tissue & Hygiene" },
-  { name: "Kalbe", category: "Healthcare & Pharma" },
-  { name: "Wardah", category: "Beauty & Cosmetics" },
-  { name: "Hatari", category: "Home Appliances" },
-  { name: "Sinarmas", category: "Conglomerate" },
-  { name: "Indofood", category: "FMCG Food" },
-  { name: "Unilever", category: "FMCG" },
-  { name: "Mayora", category: "FMCG Food" },
+  { name: "Sido Muncul", logo: "/company/clients/sido-muncul.webp", ongoing: true },
+  { name: "Hatari", logo: "/company/clients/hatari.webp", ongoing: true },
+  { name: "Marimas", logo: "/company/clients/marimas.webp", ongoing: true },
+  { name: "Suntory Garuda", logo: "/company/clients/suntory-garuda.webp", ongoing: true },
+  { name: "Kalbe", logo: "/company/clients/kalbe.webp", ongoing: true },
+  { name: "Fiesta", logo: "/company/clients/fiesta.webp", ongoing: true },
+  { name: "Sinarmas", logo: "/company/clients/sinarmas.webp", ongoing: true },
+  { name: "MyRoti", logo: "/company/clients/myroti.webp" },
+  { name: "Combiphar", logo: "/company/clients/combi-phar.webp" },
+  { name: "Wardah", logo: "/company/clients/wardah.webp" },
+  { name: "Garudafood", logo: "/company/clients/garudafood.webp" },
+  { name: "Mayora", logo: "/company/clients/mayora.webp" },
+  { name: "Kino", logo: "/company/clients/kino.webp" },
+  { name: "Paseo", logo: "/company/clients/paseo.webp" },
+  { name: "Mecosin", logo: "/company/clients/mecosin.webp" },
+  { name: "Mustika Ratu", logo: "/company/clients/mustika-ratu.webp" },
+  { name: "SOYJOY", logo: "/company/clients/soyjoy.webp" },
+  { name: "Gonusa Prima Distribusi", logo: "/company/clients/gonusa.webp" },
+  { name: "Nabati", logo: "/company/clients/nabati.webp" },
+  { name: "Landson", logo: "/company/clients/landson.webp" },
+  { name: "Darya-Varia", logo: "/company/clients/darya-varia.webp" },
+  { name: "Unza Vitalis", logo: "/company/clients/unza-vitalis.webp" },
+  { name: "Quaker", logo: "/company/clients/quaker.webp" },
+  { name: "Ichitan", logo: "/company/clients/ichitan.webp" },
+  { name: "Danone", logo: "/company/clients/danone.webp" },
+  { name: "Pigeon", logo: "/company/clients/pigeon.webp" },
+  { name: "Wook", logo: "/company/clients/wook.webp" },
+  { name: "Shinzui", logo: "/company/clients/shinzui.webp" },
+  { name: "3M", logo: "/company/clients/3m.webp" },
+  { name: "Reckitt", logo: "/company/clients/reckitt.webp" },
+] as const;
+
+export const OFFICE_LOCATIONS = [
+  {
+    name: "Tangerang Selatan",
+    type: "Representative Office",
+    address:
+      "Jl. Delima Jaya No. 1A, RT.1/RW.2, Rempoa, Kec. Ciputat Timur, Kota Tangerang Selatan, Banten 15412",
+    lat: -6.3004,
+    lng: 106.7544,
+    photo: "/company/offices/tangerang-selatan.webp",
+  },
+  {
+    name: "Medan",
+    type: "Representative Office",
+    address: "Jl. Eka Rasmi No. 49A, Medan Johor, Medan",
+    lat: 3.5354,
+    lng: 98.6772,
+    photo: "/company/offices/medan.webp",
+  },
+  {
+    name: "Bandung",
+    type: "Representative Office",
+    address: "Griya Caraka Blok G No. 35, Antapani, Bandung",
+    lat: -6.9147,
+    lng: 107.6627,
+    photo: "/company/offices/bandung.webp",
+  },
+  {
+    name: "Semarang",
+    type: "Representative Office",
+    address: "Jl. Pudak Payung Asri 1 No. 6, Pudak Payung, Semarang",
+    lat: -7.0882,
+    lng: 110.4093,
+    photo: "/company/offices/semarang.webp",
+  },
+  {
+    name: "Surabaya",
+    type: "Representative Office",
+    address: "Perum Taman Wiguna Selatan XI/2, Rungkut, Surabaya",
+    lat: -7.3265,
+    lng: 112.7818,
+    photo: "/company/offices/surabaya.webp",
+  },
+  {
+    name: "Palembang",
+    type: "Homebase",
+    address:
+      "Komp. Vila Gardena 3 Blok F No. 7, Kec. Alang-Alang Lebar, Palembang",
+    lat: -2.9387,
+    lng: 104.7048,
+  },
+  {
+    name: "Banjarmasin",
+    type: "Homebase",
+    address:
+      "Jl. Cempaka Putih, Belakang Masjid Nurul RT 08 No. 19, Kel. Kebun Bunga, Banjarmasin Timur",
+    lat: -3.3068,
+    lng: 114.6155,
+  },
+  {
+    name: "Makassar",
+    type: "Homebase",
+    address:
+      "Jl. Kimia 8, Kav. SS 19, Kawasan Industri Makassar, Makassar, Sulawesi Selatan",
+    lat: -5.1039,
+    lng: 119.4938,
+  },
+  {
+    name: "Bali",
+    type: "Homebase",
+    address:
+      "Banjar Tegal Luwih, Blok SS12A, Dalung Permai, Kuta Utara, Badung",
+    lat: -8.6252,
+    lng: 115.1728,
+  },
 ] as const;
 
 export const COVERAGE_CITIES = [
