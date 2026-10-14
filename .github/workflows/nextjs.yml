@@ -72,7 +72,14 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-
       - name: Install dependencies
-        run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
+        run: |
+          set -e
+          # Try the fast reproducible install (npm ci). If lockfile is out-of-sync use npm install as fallback
+          if [ "${{ steps.detect-package-manager.outputs.manager }}" = "npm" ]; then
+            npm ci || npm install
+          else
+            ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }} || ${{ steps.detect-package-manager.outputs.manager }} install
+          fi
       - name: Build with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
       - name: Upload artifact
