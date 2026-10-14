@@ -3,8 +3,9 @@ export const SITE_CONFIG = {
   shortName: "MKB",
   tagline: "Mitra Strategis Manpower & Brand Activation FMCG",
   description:
-    "PT Mitra Kreasi Bersama adalah perusahaan manpower outsourcing dan brand activation terpercaya untuk sektor FMCG di Indonesia sejak 2009. Didukung teknologi JUPITER untuk real-time field reporting.",
-  url: "https://mitrakreasibersama.com",
+    "PT Mitra Kreasi Bersama adalah perusahaan manpower outsourcing dan brand activation terpercaya untuk sektor FMCG di Indonesia sejak 2009. Didukung teknologi JUPITER untuk real-time field reporting & monitoring.",
+  // Allow overriding the site URL at build time so metadata and icons point to the Pages URL
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://mitrakreasibersama.com",
   email: "info@mitrakreasibersama.com",
   phone: "+62 21 1234 5678",
   whatsapp: "6281234567890",
@@ -116,7 +117,7 @@ export const COVERAGE_CITIES = [
   { name: "Makassar", lat: -5.1477, lng: 119.4327, region: "Sulawesi Selatan", teamSize: "80+" },
   { name: "Palembang", lat: -2.9761, lng: 104.7754, region: "Sumatera Selatan", teamSize: "70+" },
   { name: "Denpasar", lat: -8.6705, lng: 115.2126, region: "Bali", teamSize: "60+" },
-  { name: "Yogyakarta", lat: -7.7956, lng: 110.3695, region: "DI Yogyakarta", teamSize: "50+" },
+  { name: "Yogyakarta", lat: -7.7956, lng: 110.3699, region: "DI Yogyakarta", teamSize: "50+" },
   { name: "Balikpapan", lat: -1.2379, lng: 116.8529, region: "Kalimantan Timur", teamSize: "40+" },
   { name: "Manado", lat: 1.4748, lng: 124.8421, region: "Sulawesi Utara", teamSize: "30+" },
   { name: "Pekanbaru", lat: 0.5071, lng: 101.4478, region: "Riau", teamSize: "45+" },
